@@ -2,8 +2,8 @@
 export const products = [
   {
     id: 1,
-    title: "Pizza Margherita",
-    price: 1200,
+    title: "Pizza Margarita",
+    price: 18000,
     description: "Deliciosa pizza con tomate, mozzarella fresca y albahaca",
     category: "pizzas",
     image: "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=400",
@@ -12,7 +12,7 @@ export const products = [
   {
     id: 2,
     title: "Pizza Pepperoni",
-    price: 1400,
+    price: 24000,
     description: "Pizza con pepperoni, mozzarella y salsa de tomate",
     category: "pizzas",
     image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400",
@@ -21,7 +21,7 @@ export const products = [
   {
     id: 3,
     title: "Hamburguesa Clásica",
-    price: 1800,
+    price: 18000,
     description: "Hamburguesa con carne, lechuga, tomate y salsa especial",
     category: "hamburguesas",
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
@@ -30,7 +30,7 @@ export const products = [
   {
     id: 4,
     title: "Hamburguesa BBQ",
-    price: 2000,
+    price: 20000,
     description: "Hamburguesa con salsa BBQ, cebolla caramelizada y bacon",
     category: "hamburguesas",
     image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400",
@@ -39,7 +39,7 @@ export const products = [
   {
     id: 5,
     title: "Ensalada César",
-    price: 1000,
+    price: 10000,
     description: "Ensalada fresca con lechuga, crutones, parmesano y aderezo césar",
     category: "ensaladas",
     image: "https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400",
@@ -48,7 +48,7 @@ export const products = [
   {
     id: 6,
     title: "Ensalada Mediterránea",
-    price: 1100,
+    price: 11000,
     description: "Ensalada con tomate, pepino, aceitunas y queso feta",
     category: "ensaladas",
     image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
@@ -57,7 +57,7 @@ export const products = [
   {
     id: 7,
     title: "Pasta Carbonara",
-    price: 1600,
+    price: 16000,
     description: "Pasta con salsa carbonara, panceta y parmesano",
     category: "pastas",
     image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400",
@@ -66,7 +66,7 @@ export const products = [
   {
     id: 8,
     title: "Pasta Bolognesa",
-    price: 1500,
+    price: 15000,
     description: "Pasta con salsa bolognesa tradicional",
     category: "pastas",
     image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400",
