@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import NavBar from './Component/Navbar';
 import ItemListContainer from './Component/ItemListConteiner';
@@ -8,10 +8,31 @@ import Cart from './Component/Cart';
 import Checkout from './Component/Checkout';
 import NotFound from './Component/NotFound';
 
+// Componente para manejar redirecciones de GitHub Pages
+const GitHubPagesRedirect = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Si hay un parámetro de query que empieza con /, significa que viene de 404.html
+    const queryParams = new URLSearchParams(location.search);
+    const redirectPath = queryParams.get('/');
+    
+    if (redirectPath) {
+      // Reemplazar ~and~ con & y navegar
+      const path = redirectPath.replace(/~and~/g, '&');
+      window.history.replaceState({}, '', path);
+      window.location.reload();
+    }
+  }, [location]);
+
+  return null;
+};
+
 function App() {
   return (
     <CartProvider>
       <Router>
+        <GitHubPagesRedirect />
         <div className="App">
           <NavBar />
           <main className="main-content">
