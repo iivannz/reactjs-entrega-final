@@ -60,7 +60,7 @@ export const products = [
     price: 16000,
     description: "Pasta con salsa carbonara, panceta y parmesano",
     category: "pastas",
-    image: "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400",
+    image: "https://images.unsplash.com/photo-1623637144802-4f54c3f31b46?w=400",
     stock: 14
   },
   {
