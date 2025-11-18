@@ -38,14 +38,26 @@ body {
   padding: 0 2rem;
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo a {
+  text-decoration: none;
+}
+
 .navbar-logo h2 {
   color: #e74c3c;
   font-size: 1.8rem;
   font-weight: bold;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .navbar-links {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -56,6 +68,11 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 .navbar-links a:hover {
@@ -437,7 +454,9 @@ body {
 /* Estilos para Dropdown */
 .dropdown {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 
 .dropdown span {
@@ -448,10 +467,16 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
+  white-space: nowrap;
+  height: 100%;
 }
 
 .dropdown:hover span {
   background-color: #e74c3c;
+  transform: translateY(-2px);
 }
 
 .dropdown-content {
@@ -928,6 +953,12 @@ body {
 
 /* Estilos para NavLink activo */
 .navbar-links a.active {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.navbar-links .dropdown span.active,
+.dropdown.active span {
   background-color: #e74c3c;
   color: white;
 }
