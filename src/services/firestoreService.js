@@ -8,13 +8,36 @@ import {
   addDoc,
   serverTimestamp
 } from 'firebase/firestore';
-import { db } from '../firebase/config';
+import { db, isFirebaseConfigured } from '../firebase/config';
+import * as mockData from '../data/mockData';
 
-const productsCollection = collection(db, 'products');
-const categoriesCollection = collection(db, 'categories');
-const ordersCollection = collection(db, 'orders');
+// Collections solo si Firebase está configurado
+let productsCollection = null;
+let categoriesCollection = null;
+let ordersCollection = null;
+
+if (isFirebaseConfigured && db) {
+  productsCollection = collection(db, 'products');
+  categoriesCollection = collection(db, 'categories');
+  ordersCollection = collection(db, 'orders');
+}
 
 export const getProducts = async (categoryId = null) => {
+  // Si Firebase no está configurado, usar datos mock
+  if (!isFirebaseConfigured || !db) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        if (categoryId) {
+          const filteredProducts = mockData.products.filter(product => product.category === categoryId);
+          resolve(filteredProducts);
+        } else {
+          resolve(mockData.products);
+        }
+      }, 1000);
+    });
+  }
+
+  // Usar Firebase si está configurado
   try {
     let q;
     if (categoryId) {
@@ -34,6 +57,21 @@ export const getProducts = async (categoryId = null) => {
 };
 
 export const getProductById = async (productId) => {
+  // Si Firebase no está configurado, usar datos mock
+  if (!isFirebaseConfigured || !db) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const product = mockData.products.find(p => p.id === parseInt(productId) || p.id === productId);
+        if (product) {
+          resolve(product);
+        } else {
+          reject(new Error('Producto no encontrado'));
+        }
+      }, 1000);
+    });
+  }
+
+  // Usar Firebase si está configurado
   try {
     const docRef = doc(db, 'products', productId);
     const docSnap = await getDoc(docRef);
@@ -52,6 +90,16 @@ export const getProductById = async (productId) => {
 };
 
 export const getCategories = async () => {
+  // Si Firebase no está configurado, usar datos mock
+  if (!isFirebaseConfigured || !db) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(mockData.categories);
+      }, 500);
+    });
+  }
+
+  // Usar Firebase si está configurado
   try {
     const querySnapshot = await getDocs(categoriesCollection);
     const categories = querySnapshot.docs.map(doc => ({
@@ -65,6 +113,18 @@ export const getCategories = async () => {
 };
 
 export const createOrder = async (orderData) => {
+  // Si Firebase no está configurado, simular creación de orden
+  if (!isFirebaseConfigured || !db) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        // Generar un ID simulado
+        const orderId = 'mock-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        resolve(orderId);
+      }, 1000);
+    });
+  }
+
+  // Usar Firebase si está configurado
   try {
     const orderWithTimestamp = {
       ...orderData,

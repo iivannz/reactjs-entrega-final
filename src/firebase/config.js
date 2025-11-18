@@ -10,6 +10,23 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// Verificar si Firebase está configurado
+const isFirebaseConfigured = firebaseConfig.apiKey && 
+  firebaseConfig.apiKey !== 'your_api_key_here' &&
+  firebaseConfig.projectId && 
+  firebaseConfig.projectId !== 'your_project_id';
+
+let app = null;
+let db = null;
+
+if (isFirebaseConfigured) {
+  try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+  } catch (error) {
+    // Error handled silently, will fallback to mock data
+  }
+}
+
+export { db, isFirebaseConfigured };
 
