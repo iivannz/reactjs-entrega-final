@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import NavBar from './Component/Navbar';
 import ItemListContainer from './Component/ItemListConteiner';
@@ -8,9 +8,10 @@ import Cart from './Component/Cart';
 import Checkout from './Component/Checkout';
 import NotFound from './Component/NotFound';
 
-// Componente para manejar redirecciones de GitHub Pages
+// Componente para manejar redirecciones de GitHub Pages (solo en producción)
 const GitHubPagesRedirect = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Si hay un parámetro de query que empieza con /, significa que viene de 404.html
@@ -18,12 +19,11 @@ const GitHubPagesRedirect = () => {
     const redirectPath = queryParams.get('/');
     
     if (redirectPath) {
-      // Reemplazar ~and~ con & y navegar
+      // Reemplazar ~and~ con & y navegar sin recargar
       const path = redirectPath.replace(/~and~/g, '&');
-      window.history.replaceState({}, '', path);
-      window.location.reload();
+      navigate(path, { replace: true });
     }
-  }, [location]);
+  }, [location, navigate]);
 
   return null;
 };
